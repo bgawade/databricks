@@ -121,7 +121,7 @@ select_sales_df.createOrReplaceTempView("sales_table")
 sales_df.write \
     .format("csv") \
     .mode("overwrite") \
-    .save("abfss://target@datalake010626.dfs.core.windows.net/model/sales_data_product/")
+    .save("abfss://target@container.dfs.core.windows.net/model/sales_data_product/")
 
 # COMMAND ----------
 
@@ -183,7 +183,7 @@ gold_brand_sales=spark.sql("""select brand,sum(total_amount) as revenue,sum(quan
 gold_brand_sales.write \
     .format("delta") \
     .mode("overwrite") \
-    .save("abfss://target@datalake010626.dfs.core.windows.net/gold/brand_sales")
+    .save("abfss://target@container.dfs.core.windows.net/gold/brand_sales")
 
 
 # COMMAND ----------
@@ -206,7 +206,7 @@ gold_customer_spend=spark.sql("""select customer_id,customer_name,sum(total_amou
 gold_customer_spend.write \
     .format("delta") \
     .mode("overwrite") \
-    .save("abfss://target@datalake010626.dfs.core.windows.net/gold/customer_spend")
+    .save("abfss://target@container.dfs.core.windows.net/gold/customer_spend")
 
 # COMMAND ----------
 
@@ -227,7 +227,7 @@ gold_payment_sales=spark.sql("""select payment_method,sum(total_amount) as reven
 gold_payment_sales.write \
     .format("delta") \
     .mode("overwrite") \
-    .save("abfss://target@datalake010626.dfs.core.windows.net/gold/payment_sales")
+    .save("abfss://target@container.dfs.core.windows.net/gold/payment_sales")
 
 
 # COMMAND ----------
@@ -250,5 +250,5 @@ gold_order_status_sales=spark.sql("""select order_status,sum(total_amount) as re
 gold_order_status_sales.write \
     .format("delta") \
     .mode("overwrite") \
-    .save("abfss://target@datalake010626.dfs.core.windows.net/gold/order_status_sales")
+    .save("abfss://target@container.dfs.core.windows.net/gold/order_status_sales")
 
